@@ -18,23 +18,19 @@ console.log(result);
 function getMonthDay(month) {
     //1일의 요일정보를 반환해주는 기능.
     // 일:0, 월:1, 화:2, 수:3, 목:4, 금:5, 토:6
-    var monthDay = 0;
-    if (month == 1) {
-        monthDay = 6;
-    } else if (month == 2) {
-        monthDay = 2;
-    } else if (month == 3){
-        monthDay = 2;
-    } else if (month == 4){
-        monthDay = 5;
-    } else{
-        monthDay = 0
-    }
-    return monthDay;
+    var startVal = 6;
+    var point = [];
+    var prevVal = startVal;
+    for(let i=0; i<12;i++){
+        if(i>0){
+            prevVal = (prevVal + getLastDate(i)) % 7;
+        }
+        point[i] = prevVal;
+    }   
+    console.log(point);
+    return point[month - 1]; // 1월달 -> 배열의 첫번째 위치
+
 }
-
-
-
 function getLastDate(month) {
     var lastDate = 31
     switch (month) {
